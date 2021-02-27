@@ -10,10 +10,30 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-.wp-block-cgb-block-custom-blocks {
-  background: #bada55;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block .container {
+  border: 1px solid #dedede;
+  padding: 1rem; }
+
+.wp-block .button-container {
+  text-align: center;
+  padding: 22% 0;
+  background: #f1f1f1;
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  margin: 0 0 1.2rem 0; }
+
+.wp-block .heading {
+  font-size: 1.5rem;
+  font-weight: 600; }
+
+.wp-block .image {
+  height: 15.7rem;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover; }
