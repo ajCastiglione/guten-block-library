@@ -37,3 +37,12 @@
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover; }
+
+.wp-block .split {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: stretch;
+      align-items: stretch; }
+  .wp-block .split .col {
+    -ms-flex: 1;
+        flex: 1; }

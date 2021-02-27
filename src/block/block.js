@@ -12,7 +12,7 @@ import "./style.scss";
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 
-const { RichText, MediaUpload, PlainText } = wp.editor;
+const { RichText, MediaUpload, PlainText, FontSizePicker } = wp.editor;
 const { Button } = wp.components;
 
 /**
@@ -52,6 +52,13 @@ registerBlockType("mwd/card", {
         imageUrl: {
             attribute: "src",
             selector: ".card__image",
+        },
+        fontSize: {
+            type: "number",
+        },
+        titleFontSize: {
+            type: "string",
+            default: "",
         },
     },
 
@@ -102,12 +109,29 @@ registerBlockType("mwd/card", {
                     value={attributes.imageID}
                     render={({ open }) => getImageButton(open)}
                 />
-                <PlainText
-                    onChange={(content) => setAttributes({ title: content })}
-                    value={attributes.title}
-                    placeholder="Your card title goes here..."
-                    className="heading"
-                />
+                <div className="split">
+                    <div className="col">
+                        <FontSizePicker
+                            onChange={(size) => {
+                                setAttributes({
+                                    fontSize: size,
+                                    titleFontSize: "font-size: " + size + "px",
+                                });
+                            }}
+                            value={attributes.fontSize}
+                        />
+                    </div>
+                    <div className="col">
+                        <PlainText
+                            onChange={(content) =>
+                                setAttributes({ title: content })
+                            }
+                            value={attributes.title}
+                            placeholder="Your card title goes here..."
+                            className="heading"
+                        />
+                    </div>
+                </div>
                 <RichText
                     onChange={(content) => setAttributes({ body: content })}
                     value={attributes.body}
@@ -147,11 +171,17 @@ registerBlockType("mwd/card", {
             );
         };
 
+        console.log(attributes);
+
         return (
             <div className="card">
                 {cardImage(attributes.imageUrl, attributes.imageAlt)}
                 <div className="card__content">
-                    <h3 className="card__title">{attributes.title}</h3>
+                    <h3
+                        className="card__title"
+                        style={attributes.titleFontSize}>
+                        {attributes.title}
+                    </h3>
                     <div className="card__body">{attributes.body}</div>
                 </div>
             </div>
