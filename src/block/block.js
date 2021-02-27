@@ -14,6 +14,7 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 
 const { RichText, MediaUpload, PlainText } = wp.editor;
 const { Button } = wp.components;
+
 /**
  * Register: a Gutenberg Block.
  *
@@ -58,8 +59,6 @@ registerBlockType("mwd/card", {
      * The edit function describes the structure of your block in the context of the editor.
      * This represents what the editor will render when the block is used.
      *
-     * The "edit" property must be a valid function.
-     *
      * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
      *
      * @param {Object} props Props.
@@ -67,6 +66,7 @@ registerBlockType("mwd/card", {
      */
     edit: ({ attributes, className, setAttributes }) => {
         // Creates a <p class='wp-block-cgb-block-custom-blocks'></p>.
+
         const getImageButton = (openEvent) => {
             if (attributes.imageUrl) {
                 return (
