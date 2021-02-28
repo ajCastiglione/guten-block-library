@@ -58,7 +58,7 @@ registerBlockType("mwd/card", {
         },
         titleFontSize: {
             type: "string",
-            default: "",
+            default: "font-size: inherit",
         },
     },
 
@@ -72,7 +72,7 @@ registerBlockType("mwd/card", {
      * @returns {Mixed} JSX Component.
      */
     edit: ({ attributes, className, setAttributes }) => {
-        // Creates a <p class='wp-block-cgb-block-custom-blocks'></p>.
+        console.log(attributes);
 
         const getImageButton = (openEvent) => {
             if (attributes.imageUrl) {
@@ -170,8 +170,6 @@ registerBlockType("mwd/card", {
                 />
             );
         };
-
-        console.log(attributes);
 
         return (
             <div className="card">
