@@ -48,7 +48,7 @@ registerBlockType("mwd/posts", {
      * The edit function describes the structure of your block in the context of the editor.
      * This represents what the editor will render when the block is used.
      */
-    edit: ({ attributes, className, setAttributes }) => {
+    edit: ({ attributes, setAttributes }) => {
         if (!attributes.categories) {
             wp.apiFetch({
                 url: "/wp-json/wp/v2/categories",
@@ -99,13 +99,6 @@ registerBlockType("mwd/posts", {
     /**
      * The save function defines the way in which the different attributes should be combined
      * into the final markup, which is then serialized by Gutenberg into post_content.
-     *
-     * The "save" property must be specified and must be a valid function.
-     *
-     * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
-     *
-     * @param {Object} props Props.
-     * @returns {Mixed} JSX Frontend HTML.
      */
     save: () => null,
 });

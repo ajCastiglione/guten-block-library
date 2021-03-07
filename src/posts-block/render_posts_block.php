@@ -23,22 +23,28 @@ register_block_type(
     )
 );
 
-function render_posts_block($attributes)
+function render_posts_block($attributes, $content)
 {
     $posts = get_posts([
         'category' => $attributes['selectedCategory'],
         'posts_per_page' => $attributes['postsPerPage'],
     ]);
 
-    ob_start();
-    foreach ($posts as $post) {
-        echo "<div class='" . esc_attr(implode(' ', get_post_class('', $post->ID))) . "'>";
-        echo "<h2>" . $post->post_title . "</h2>";
-        echo get_the_post_thumbnail($post->ID);
-        echo "<p>" . $post->post_excerpt . "</p>";
-        echo "</div>";
-        echo "<hr>";
-    }
+    ob_start(); ?>
 
-    return ob_get_clean();
-}
+    <div class="mwd-posts-block posts">
+
+        <?php foreach ($posts as $post) { ?>
+            <div class="<?= esc_attr(implode(' ', get_post_class('', $post->ID))) ?> ">
+                <a href="<?= get_permalink($post->ID) ?>">
+                    <h2><?= $post->post_title ?> </h2>
+                    <div><?= get_the_category_list(', ', '', $post->ID) ?> </div>
+                    <?= get_the_post_thumbnail($post->ID); ?>
+                    <p><?= $post->post_excerpt ?> </p>
+                </a>
+            </div>
+    <?php
+        }
+        echo "</div>";
+        return ob_get_clean();
+    }

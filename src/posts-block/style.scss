@@ -4,11 +4,19 @@
  * CSS for both Frontend+Backend.
  */
 
-.wp-block-cgb-block-custom-blocks  {
-  background: $red;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
+.mwd-posts-block {
+    display: grid;
+    gap: 20px;
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    a {
+        text-decoration: none;
+    }
+    .post {
+        flex: 1;
+    }
 }
