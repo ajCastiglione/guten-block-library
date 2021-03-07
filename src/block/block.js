@@ -72,8 +72,6 @@ registerBlockType("mwd/card", {
      * @returns {Mixed} JSX Component.
      */
     edit: ({ attributes, className, setAttributes }) => {
-        console.log(attributes);
-
         const getImageButton = (openEvent) => {
             if (attributes.imageUrl) {
                 return (
