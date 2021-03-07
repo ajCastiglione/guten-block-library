@@ -1,0 +1,21 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+@import "../common.scss";
+
+.wp-block {
+    .container {
+        border: 1px solid $gray;
+        padding: 1rem;
+    }
+    .form-row {
+        margin-bottom: 18px;
+        label {
+            margin-right: 10px;
+        }
+    }
+}

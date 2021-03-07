@@ -1,0 +1,27 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-mwd-card {
+    background: $off-white;
+    border: 0.2rem solid $gray;
+    border-radius: 5px;
+    color: $black;
+    margin: 18px auto;
+    max-width: 450px;
+    box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+    .card {
+        // Leave empty as this is the same as the current top lvl selector it is nested under
+        &__image {
+            margin: 0;
+        }
+        &__content {
+            padding: 1rem 2rem;
+        }
+        &__title {
+            text-transform: capitalize;
+        }
+    }
+}

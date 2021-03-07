@@ -9,5 +9,6 @@
  * Webpack is compiling as the input file.
  */
 
-import "./block/block.js";
-import "./posts-block/block.js";
+import "./card/block.js";
+import "./posts/block.js";
+import "./ajax-search/block.js";
