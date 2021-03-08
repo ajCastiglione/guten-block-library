@@ -34,7 +34,7 @@ registerBlockType("mwd/posts", {
 
     attributes: {
         categories: {
-            type: "object",
+            type: "array",
         },
         selectedCategory: {
             type: "string",

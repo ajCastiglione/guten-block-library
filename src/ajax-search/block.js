@@ -64,8 +64,6 @@ registerBlockType("mwd/ajax-search", {
             });
         }
 
-        console.log(attributes.postTypesData);
-
         if (!attributes.postTypes) {
             return "Loading...";
         }
