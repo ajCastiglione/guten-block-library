@@ -69,7 +69,7 @@ function custom_blocks_cgb_block_assets()
 	// Only need to declare a register_block_type func if its going to be dynamic. Can instead bundle the func inside the extra file that will handle the specific functionality as well. Block name must match the block namespace registered in the JS file, otherwise it'll be ignored.
 }
 
-require_once('posts-block/render_posts_block.php');
+require_once('posts/render_posts_block.php');
 
 // Hook: Block assets.
 add_action('init', 'custom_blocks_cgb_block_assets');

@@ -25,22 +25,20 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType("mwd/posts", {
+registerBlockType("mwd/ajax-search", {
     // Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-    title: __("Posts"), // Block title.
-    icon: "admin-post", // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
+    title: __("Ajax Search"), // Block title.
+    icon: "search", // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
     category: "common", // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
-    keywords: [__("posts"), __("posts block"), __("mwd")],
+    keywords: [__("search"), __("search block"), __("ajax search"), __("mwd")],
 
     attributes: {
-        categories: {
-            type: "object",
+        postTypes: {
+            type: "array",
         },
-        selectedCategory: {
+        selectedType: {
             type: "string",
-        },
-        postsPerPage: {
-            tytpe: "string",
+            default: "All",
         },
     },
 
@@ -49,48 +47,59 @@ registerBlockType("mwd/posts", {
      * This represents what the editor will render when the block is used.
      */
     edit: ({ attributes, setAttributes }) => {
-        if (!attributes.categories) {
+        if (!attributes.postTypes) {
             wp.apiFetch({
-                url: "/wp-json/wp/v2/categories",
-            }).then((categories) => setAttributes({ categories }));
+                url: "/wp-json/wp/v2/types",
+            }).then((postTypes) => {
+                let arrayConversion = Object.values(postTypes);
+                let filteredTypes = arrayConversion.filter((type) => {
+                    return type.name == "Media" ||
+                        type.name == "Reusable Blocks"
+                        ? false
+                        : true;
+                });
+                return setAttributes({
+                    postTypes: filteredTypes,
+                });
+            });
         }
 
-        if (!attributes.categories) {
+        console.log(attributes.postTypesData);
+
+        if (!attributes.postTypes) {
             return "Loading...";
-        }
-
-        if (attributes.categories && attributes.categories.length == 0) {
-            return "No categories found. Please create some!";
         }
 
         return (
             <div className="container">
                 <div className="form-row">
-                    <label htmlFor="select">Category</label>
+                    <label htmlFor="select">Select Post Type</label>
                     <select
                         className="select"
                         onChange={(e) =>
-                            setAttributes({ selectedCategory: e.target.value })
+                            setAttributes({ selectedType: e.target.value })
                         }
-                        value={attributes.selectedCategory}>
-                        {attributes.categories.map((category) => {
+                        value={attributes.selectedType}>
+                        <option value="all">All</option>
+                        {attributes.postTypes.map((type, idx) => {
                             return (
-                                <option value={category.id} key={category.id}>
-                                    {category.name}
+                                <option value={type.name} key={idx}>
+                                    {type.name.charAt(0).toUpperCase() +
+                                        type.name.slice(1)}
                                 </option>
                             );
                         })}
                     </select>
                 </div>
                 <div className="form-row">
-                    <label htmlFor="input">Posts Per Page</label>
+                    {/* <label htmlFor="input">Posts Per Page</label>
                     <input
                         type="text"
                         onChange={(e) =>
                             setAttributes({ postsPerPage: e.target.value })
                         }
                         value={attributes.postsPerPage}
-                    />
+                    /> */}
                 </div>
             </div>
         );

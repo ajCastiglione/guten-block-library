@@ -49,3 +49,28 @@
   .mwd-posts-block .post {
     -ms-flex: 1;
         flex: 1; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.mwd-posts-block {
+  display: grid;
+  gap: 20px; }
+  @media (min-width: 768px) {
+    .mwd-posts-block {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) {
+    .mwd-posts-block {
+      grid-template-columns: repeat(3, 1fr); } }
+  .mwd-posts-block a {
+    text-decoration: none; }
+  .mwd-posts-block .post {
+    -ms-flex: 1;
+        flex: 1; }

@@ -11,7 +11,7 @@
  * @since 1.16.0
  */
 register_block_type(
-    'mwd/posts',
+    'mwd/ajax-search',
     array(
         // Enqueue blocks.style.build.css on both frontend & backend.
         'style'         => 'custom_blocks-cgb-style-css',
@@ -23,7 +23,7 @@ register_block_type(
     )
 );
 
-function render_posts_block($attributes, $content)
+function render_posts_block($attributes)
 {
     $posts = get_posts([
         'category' => $attributes['selectedCategory'],

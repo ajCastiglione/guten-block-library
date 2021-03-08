@@ -72,3 +72,29 @@
   margin-bottom: 18px; }
   .wp-block .form-row label {
     margin-right: 10px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block .container {
+  border: 1px solid #dedede;
+  padding: 1rem; }
+
+.wp-block .form-row {
+  margin-bottom: 18px; }
+  .wp-block .form-row label {
+    margin-right: 10px; }
